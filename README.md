@@ -1,8 +1,6 @@
 # Mini Auth Demo
 
-Ein kleiner lokaler Vergleichsprototyp für passwortbasierte und passkeybasierte
-Authentifizierung. Der Schwerpunkt liegt bewusst auf den
-Authentifizierungsabläufen und nicht auf einer produktiven Infrastruktur.
+Ein lokaler Vergleichsprototyp für passwortbasierte und passkeybasierte Authentifizierung. Er veranschaulicht die jeweiligen Authentifizierungsabläufe in einer kleinen Webanwendung.
 
 ## Funktionen
 
