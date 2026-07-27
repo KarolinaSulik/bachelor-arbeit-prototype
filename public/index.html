@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentifizierungsvergleich</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Vergleichsprototyp zur Authentifizierung</p>
+        <h1>Passwort- und Passkey-Authentifizierung</h1>
+        <p class="lead">
+          Dieser Prototyp vergleicht passwortbasierte und passkeybasierte
+          Authentifizierung. Registriere zuerst ein Konto mit Passwort und füge
+          anschließend für dieselbe E-Mail-Adresse einen Passkey hinzu.
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="card auth-card">
+          <h2>Mit Passwort registrieren</h2>
+          <form id="password-register-form">
+            <label>
+              E-Mail
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Passwort
+              <input type="password" name="password" required minlength="15" maxlength="72" />
+            </label>
+            <button type="submit">Mit Passwort registrieren</button>
+          </form>
+        </article>
+
+        <article class="card auth-card">
+          <h2>Mit Passwort anmelden</h2>
+          <form id="password-login-form">
+            <label>
+              E-Mail
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Passwort
+              <input type="password" name="password" required minlength="15" maxlength="72" />
+            </label>
+            <button type="submit">Mit Passwort anmelden</button>
+          </form>
+        </article>
+
+        <article class="card auth-card">
+          <h2>Passkey registrieren</h2>
+          <p class="hint">
+            Verwende die E-Mail-Adresse, die bereits mit einem Passwort
+            registriert wurde.
+          </p>
+          <form id="passkey-register-form">
+            <label>
+              E-Mail
+              <input type="email" name="email" required />
+            </label>
+            <button type="submit">Passkey registrieren</button>
+          </form>
+        </article>
+
+        <article class="card auth-card">
+          <h2>Mit Passkey anmelden</h2>
+          <form id="passkey-login-form">
+            <label>
+              E-Mail
+              <input type="email" name="email" required />
+            </label>
+            <button type="submit">Mit Passkey anmelden</button>
+          </form>
+        </article>
+      </section>
+
+      <section id="login-success" class="card success-card success-card-hidden" aria-live="polite">
+        <p class="success-eyebrow">Erfolgreich angemeldet</p>
+        <h2>Du bist angemeldet.</h2>
+        <p id="success-message" class="success-message">
+          Deine Session ist aktiv und du kannst den geschützten Bereich öffnen.
+        </p>
+      </section>
+
+      <section class="card status-card">
+        <div class="status-actions">
+          <button id="refresh-session" type="button">Session aktualisieren</button>
+          <button id="open-dashboard" type="button">Dashboard öffnen</button>
+          <button id="logout-button" type="button">Abmelden</button>
+        </div>
+
+        <h2>Status</h2>
+        <p class="status-note">
+          Dieses Feld zeigt die letzte JSON-Antwort des Backends. Es macht
+          sichtbar, ob eine Session aktiv ist und ob eine Aktion erfolgreich war.
+        </p>
+        <pre id="status-output">Wird geladen...</pre>
+      </section>
+
+      <section class="card references-card">
+        <h2>Code-Referenzen</h2>
+        <p class="status-note">
+          Beide Abläufe lassen sich im Quellcode des Prototyps direkt verfolgen.
+        </p>
+        <div class="code-grid">
+          <article class="code-panel">
+            <h3>Backend</h3>
+            <pre><code>POST /register/password
+POST /login/password
+POST /register/passkey/options
+POST /register/passkey/verify
+POST /login/passkey/options
+POST /login/passkey/verify</code></pre>
+          </article>
+          <article class="code-panel">
+            <h3>Frontend</h3>
+            <pre><code>postJson('/register/password', payload)
+startRegistration({ optionsJSON: options })
+postJson('/register/passkey/verify', { email, response })
+startAuthentication({ optionsJSON: options })
+postJson('/login/passkey/verify', { email, response })</code></pre>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
